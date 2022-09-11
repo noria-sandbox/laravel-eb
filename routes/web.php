@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/about', function () {
+    return response()->json([
+        'name' => 'Laravel',
+        'php_version' => phpversion(),
+        'version' => app()->version(),
+        'environment' => app()->environment(),
+    ]);
+});
+
+Route::post('/', function (Request $request) {
+    return response()->json($request->all());
 });
